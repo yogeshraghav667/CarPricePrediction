@@ -7,7 +7,7 @@ import pickle
 with open('LRmodel.pkl', 'rb') as file:
     model = pickle.load(file)
 
-df = pd.read_csv("C:\\Users\\HP\\Downloads\\quikr_car.csv")
+df = pd.read_csv("quikr_car.csv")
 cars_name = df["name"].str.split().str.slice(0, 3).str.join(" ").unique()
 company = df["company"].unique()
 
