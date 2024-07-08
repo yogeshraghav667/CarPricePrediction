@@ -64,6 +64,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("<h4 style='color: #FF6347;'>Created by Y.S.RAGHAV</h4>", unsafe_allow_html=True)
 st.markdown("<h1 class='title'>Car Price Prediction</h1>", unsafe_allow_html=True)
 
 # Input fields
