@@ -8,7 +8,7 @@ with open('LRmodel.pkl', 'rb') as file:
     model = pickle.load(file)
 
 df = pd.read_csv("C:\\Users\\HP\\Downloads\\quikr_car.csv")
-cars_name = df["name"].str.split().str.slice(0,3).str.join(" ").unique()
+cars_name = df["name"].str.split().str.slice(0, 3).str.join(" ").unique()
 company = df["company"].unique()
 
 def predict_price(name, company, year, kms_driven, fuel_type):
@@ -25,36 +25,40 @@ def predict_price(name, company, year, kms_driven, fuel_type):
     prediction = model.predict(input_df)
     return prediction[0]
 
-
-
-# Custom CSS to add a background image
+# Custom CSS to add a background image with reduced opacity and change label colors
 st.markdown(
-    f"""
+    """
     <style>
-    .stApp {{
+    .stApp {
         background: url("https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/FRONX/9243/1697697928533/front-left-side-47.jpg");
         background-size: cover;
-    }}
-    .title {{
+    }
+    .title {
         color: #FF6347; /* Tomato color */
         font-size: 3em;
-    }}
-    .footer {{
+    }
+    .footer {
         margin-top: 20px;
         font-size: 0.8em;
         color: #666;
-    }}
-    .footer .connect-text {{
-        color: #4B0082; /* Indigo color */
-        font-weight: bold; /* Make text bold */
-    }}
-    .footer a {{
-        color: #FF6347; /* Red color */
+    }
+    .footer .connect-text {
+        color: #FFC300; /* Indigo color */
+    }
+    .footer a {
+        color: #FDFEFE; /* White color */
         text-decoration: none;
         margin-right: 10px;
-        font-weight: bold; /* Make links bold */
         font-size: 1.2em; /* Increase font size */
-    }}
+    }
+    .connect-title {
+        font-size: 1.3em;
+        color: #FF6347; /* Change the color of Connect with me */
+        font-weight: bold; /* Make the text bold */
+    }
+    label {
+        color: #000000 !important; /* Change the color of input field labels */
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -74,10 +78,12 @@ if st.button("Predict Price"):
     price = predict_price(name, company, year, kms_driven, fuel_type)
     st.success(f"The predicted price of the car is: ₹{price}")
 
-st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("<div class='footer'>Connect with me: "
+# Contact information
+st.markdown("<div class='contact-box'>", unsafe_allow_html=True)
+st.markdown("<div class='footer'><span class='connect-title'>Connect with me:</span> "
             "<a href='https://www.linkedin.com/in/yogesh-singh-raghav-ab52b0255/' target='_blank'>LinkedIn</a> | "
             "<a href='https://www.instagram.com/y.s.raghav_/' target='_blank'>Instagram</a> | "
             "<a href='https://github.com/yogeshraghav667' target='_blank'>GitHub</a> | "
             "<a href='mailto:yogeshraghav667@gmail.com' target='_blank'>Email</a></div>",
             unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
