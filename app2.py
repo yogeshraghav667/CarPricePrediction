@@ -7,7 +7,7 @@ import pickle
 with open('LRmodel.pkl', 'rb') as file:
     model = pickle.load(file)
 
-df = pd.read_csv("quikr_car.csv")
+df = pd.read_csv("dataset.csv")
 cars_name = df["name"].str.split().str.slice(0, 3).str.join(" ").unique()
 company = df["company"].unique()
 
@@ -66,6 +66,7 @@ st.markdown(
 
 st.markdown("<h4 style='color: #FF6347;'>Created by Y.S.RAGHAV</h4>", unsafe_allow_html=True)
 st.markdown("<h1 class='title'>Car Price Prediction</h1>", unsafe_allow_html=True)
+
 
 # Input fields
 name = st.selectbox("Car Name", cars_name)
