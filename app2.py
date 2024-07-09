@@ -8,8 +8,8 @@ with open('LRmodel.pkl', 'rb') as file:
     model = pickle.load(file)
 
 df = pd.read_csv("dataset.csv")
-cars_name = df["name"].str.split().str.slice(0, 3).str.join(" ").unique()
-company = df["company"].unique()
+cars_name = df["name"]
+company = df["company"]
 
 def predict_price(name, company, year, kms_driven, fuel_type):
     # Create a dataframe with input values
@@ -73,7 +73,7 @@ name = st.selectbox("Car Name", cars_name)
 company = st.selectbox("Company", company)
 year = st.number_input("Year of Manufacture", min_value=1900, max_value=2024, value=2020)
 kms_driven = st.number_input("Kilometers Driven", min_value=0)
-fuel_type = st.selectbox("Fuel Type", ["Petrol", "Diesel", "LPG"])
+fuel_type = st.selectbox("Fuel Type", ["Petrol", "Diesel", "LPG", "CNG"])
 
 # Predict button
 if st.button("Predict Price"):
